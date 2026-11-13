@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nails Studio — Katalog Kuku Palsu</title>
+  <style>
+    /* Reset & Variabel Warna */
+    :root {
+      --bg-body: #fff9fa;
+      --bg-card: #ffffff;
+      --primary: #c9647a;
+      --primary-light: #fae6ea;
+      --text-main: #2d2325;
+      --text-muted: #78696c;
+      --border: #f0dce0;
+      --gold: #b88e58;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Banner Katalog */
+    .hero {
+      max-width: 1100px;
+      margin: 30px auto 10px;
+      padding: 36px 24px;
+      background: linear-gradient(135deg, #fcebf0 0%, #fff5f7 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Kontainer Katalog */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-count {
+      font-family: sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    /* Grid Produk */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    /* Kartu Produk */
+    .product-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-image {
+      background-color: #fdf3f5;
+      height: 220px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .badge.gold {
+      background-color: var(--gold);
+    }
+
+    .product-info {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .product-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .product-shape {
+      font-size: 0.78rem;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 28px 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--text-main);
+    }
+
+    /* Responsif Mobile */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.45rem;
+      }
+      .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+        gap: 14px;
+      }
+      .product-image {
+        height: 170px;
+      }
+      .product-info {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Toko -->
+  <header>
+    <div class="brand-name">Nails Studio</div>
+    <div class="brand-tagline">Koleksi Kuku Palsu Handmade &amp; Reusable Press-On Nails</div>
+  </header>
+
+  <!-- Banner Informasi -->
+  <section class="hero">
+    <h1>Katalog Koleksi Terbaru</h1>
+    <p>
+      Setiap set berisi 10–24 pcs kuku palsu premium dengan lem gel, kikir mini, dan pendorong kutikula.
+      Tampilan salon instan dalam hitungan menit.
+    </p>
+  </section>
+
+  <!-- Daftar Katalog -->
+  <main class="container">
+    <div class="section-title">
+      <span>Semua Produk</span>
+      <span class="section-count" id="total-produk">0 Produk</span>
+    </div>
+
+    <div class="catalog-grid" id="catalog-grid">
+      <!-- Kartu produk akan dirender oleh JavaScript -->
+    </div>
+  </main>
+
+  <!-- Footer Statis -->
+  <footer>
+    <p><strong>Nails Studio</strong> — Katalog Resmi Kuku Palsu</p>
+    <p>Instagram: @nailsstudio.id &bull; Jam Operasional: Senin – Sabtu, 09.00 – 17.00 WIB</p>
+  </footer>
+
+  <script>
+    // Data statis 56 produk kuku palsu dengan file gambar dari folder 'kuku'
+    const produkKuku = [
+      {
+        nama: "Colorful Pop Art",
+        kategori: "Artistic Series",
+        deskripsi: "Desain pop art penuh warna cerah yang ekspresif dan playful.",
+        harga: "Rp 75.000",
+        bentuk: "Coffin",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Colorful_pop_art_fake_nails_78669720.jpg"
+      },
+      {
+        nama: "Cosmic Star Galaxy",
+        kategori: "Fantasy Series",
+        deskripsi: "Motif galaksi bertabur bintang kosmik dengan kilau malam.",
+        harga: "Rp 78.000",
+        bentuk: "Almond",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/Cosmic_star_false_nails_set_d43e1803.jpg"
+      },
+      {
+        nama: "Cowboy Western Theme",
+        kategori: "Themed Series",
+        deskripsi: "Set kuku bertema koboi western dengan detail unik dan artistik.",
+        harga: "Rp 74.000",
+        bentuk: "Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Cowboy_western_themed_fake_nails_32489ec9.jpg"
+      },
+      {
+        nama: "Cyberpunk Neon Grid",
+        kategori: "Futuristic",
+        deskripsi: "Gaya cyberpunk modern dengan aksen garis futuristik yang tajam.",
+        harga: "Rp 82.000",
+        bentuk: "Stiletto",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Cyberpunk_fake_nail_set_arranged_5f8aaea8.jpg"
+      },
+      {
+        nama: "Soft Ivory Classic",
+        kategori: "Minimalis",
+        deskripsi: "Tampilan bersih warna gading lembut untuk kesan anggun sehari-hari.",
+        harga: "Rp 55.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_arranged_on_background_f6d56919.jpg"
+      },
+      {
+        nama: "Studio Signature Display",
+        kategori: "Glam Series",
+        deskripsi: "Set pilihan studio dengan perpaduan kilap gel yang tahan lama.",
+        harga: "Rp 65.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_catalog_display_88e57e71.jpg"
+      },
+      {
+        nama: "Nude Glossy Essential",
+        kategori: "Minimalis",
+        deskripsi: "Warna nude natural dengan lapisan akhir mengkilap sempurna.",
+        harga: "Rp 56.000",
+        bentuk: "Short Square",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_catalog_photo_0fd3c44e.jpg"
+      },
+      {
+        nama: "Silk Pearl Finish",
+        kategori: "Glam Series",
+        deskripsi: "Efek kilau mutiara sutra yang lembut dan mewah di jari.",
+        harga: "Rp 68.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_catalog_photo_ef719f4c.jpg"
+      },
+      {
+        nama: "Frozen Ice Crystal",
+        kategori: "Fantasy Series",
+        deskripsi: "Nuansa biru es dingin dengan detail kristal salju berkilauan.",
+        harga: "Rp 79.000",
+        bentuk: "Coffin",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Fake_nails_frozen_design_set_d3a969c8.jpg"
+      },
+      {
+        nama: "Magic Fantasy Aura",
+        kategori: "Fantasy Series",
+        deskripsi: "Desain magis penuh warna fantasi dengan sentuhan shimmer.",
+        harga: "Rp 80.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_magic_fantasy_set_17ac94b5.jpg"
+      },
+      {
+        nama: "Sweet Pastel Neat",
+        kategori: "Pastel Pop",
+        deskripsi: "Pilihan warna pastel manis yang rapi untuk tampilan kasual.",
+        harga: "Rp 58.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_neatly_arranged_dffa1284.jpg"
+      },
+      {
+        nama: "Blush Satin Set",
+        kategori: "Glam Series",
+        deskripsi: "Rona merah muda lembut dengan hasil akhir satin yang halus.",
+        harga: "Rp 62.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_arranged_5a3bf7e6.jpg"
+      },
+      {
+        nama: "Minimalist Cream Set",
+        kategori: "Minimalis",
+        deskripsi: "Warna krem netral yang mudah dipadukan dengan berbagai busana.",
+        harga: "Rp 55.000",
+        bentuk: "Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_arranged_neatly_c0f2f83c.jpg"
+      },
+      {
+        nama: "Chic Everyday Nails",
+        kategori: "Minimalis",
+        deskripsi: "Desain simpel dan modern yang nyaman dipakai beraktivitas.",
+        harga: "Rp 57.000",
+        bentuk: "Short Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_displayed_16c67bd7.jpg"
+      },
+      {
+        nama: "Warm Beige Gloss",
+        kategori: "Earth Tone",
+        deskripsi: "Nuansa beige hangat dengan kilap salon yang elegan.",
+        harga: "Rp 59.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_on_background_d0d4da56.jpg"
+      },
+      {
+        nama: "Soft Velvet Fabric",
+        kategori: "Glam Series",
+        deskripsi: "Tampilan kuku lembut bergaya feminin dengan detail manis.",
+        harga: "Rp 64.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_on_fabric_3f554c6d.jpg"
+      },
+      {
+        nama: "Rosewood Shine",
+        kategori: "Earth Tone",
+        deskripsi: "Warna rosewood klasik yang memberikan kesan dewasa dan rapi.",
+        harga: "Rp 63.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_on_fabric_8171364c.jpg"
+      },
+      {
+        nama: "Artisan Motif Set",
+        kategori: "Artistic Series",
+        deskripsi: "Set kuku bermotif artistik dengan detail lukisan tangan.",
+        harga: "Rp 72.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_set_with_design_51118adc.jpg"
+      },
+      {
+        nama: "Spy Movie Noir",
+        kategori: "Themed Series",
+        deskripsi: "Desain misterius terinspirasi film mata-mata yang sleek dan tegas.",
+        harga: "Rp 76.000",
+        bentuk: "Stiletto",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Fake_nails_spy_movie_design_c2102cfa.jpg"
+      },
+      {
+        nama: "Festive Lantern Glow",
+        kategori: "Themed Series",
+        deskripsi: "Motif lentera hangat yang meriah dengan sentuhan warna cerah.",
+        harga: "Rp 74.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_with_lantern_design_902b63a3.jpg"
+      },
+      {
+        nama: "Pirate Adventure Set",
+        kategori: "Themed Series",
+        deskripsi: "Set kuku bertema bajak laut dengan ornamen klasik yang unik.",
+        harga: "Rp 75.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_with_pirate_design_bc8521db.jpg"
+      },
+      {
+        nama: "Sweet Strawberry Berry",
+        kategori: "Pastel Pop",
+        deskripsi: "Desain buah stroberi imut di atas warna dasar lembut yang segar.",
+        harga: "Rp 69.000",
+        bentuk: "Short Square",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/Fake_nails_with_strawberry_design_1ad7c828.jpg"
+      },
+      {
+        nama: "Blush Rose Silk",
+        kategori: "Glam Series",
+        deskripsi: "Nuansa pink lembut dengan kilau halus yang menawan.",
+        harga: "Rp 65.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_02218fe2.jpg"
+      },
+      {
+        nama: "Velvet Nude Chic",
+        kategori: "Minimalis",
+        deskripsi: "Warna nude natural yang cocok untuk tampilan sehari-hari.",
+        harga: "Rp 58.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_404a9257.jpg"
+      },
+      {
+        nama: "Pearl Shimmer Set",
+        kategori: "Glam Series",
+        deskripsi: "Sentuhan akhir mutiara berkilau untuk kesan anggun dan rapi.",
+        harga: "Rp 72.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_47e4c301.jpg"
+      },
+      {
+        nama: "Soft Pastel Dream",
+        kategori: "Pastel Pop",
+        deskripsi: "Perpaduan warna pastel lembut yang manis dan segar.",
+        harga: "Rp 60.000",
+        bentuk: "Short Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_4ea9c67b.jpg"
+      },
+      {
+        nama: "Rosy Petal Gloss",
+        kategori: "Glam Series",
+        deskripsi: "Kilap gel bening dengan rona kelopak mawar yang cantik.",
+        harga: "Rp 64.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_8e0005de.jpg"
+      },
+      {
+        nama: "Mocha Cream Satin",
+        kategori: "Earth Tone",
+        deskripsi: "Warna cokelat susu hangat dengan hasil akhir satin halus.",
+        harga: "Rp 59.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_9025b94e.jpg"
+      },
+      {
+        nama: "Crystal Dew Drop",
+        kategori: "Luxury Series",
+        deskripsi: "Tampilan jernih berkilau dengan detail aksen elegan.",
+        harga: "Rp 75.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_9ebebbdc.jpg"
+      },
+      {
+        nama: "Berry Wine Glaze",
+        kategori: "Bold Series",
+        deskripsi: "Warna merah berry pekat yang berani dan berkelas.",
+        harga: "Rp 62.000",
+        bentuk: "Stiletto",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_a61f3acd.jpg"
+      },
+      {
+        nama: "Lavender Mist Set",
+        kategori: "Pastel Pop",
+        deskripsi: "Ungu lavender muda dengan kilau lembut yang menenangkan.",
+        harga: "Rp 63.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_bf83b364.jpg"
+      },
+      {
+        nama: "Caramel Swirl Matte",
+        kategori: "Earth Tone",
+        deskripsi: "Nuansa karamel hangat dengan tekstur matte beludru.",
+        harga: "Rp 61.000",
+        bentuk: "Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_c793467b.jpg"
+      },
+      {
+        nama: "Peach Blossom Aura",
+        kategori: "Pastel Pop",
+        deskripsi: "Efek gradasi warna persik lembut di bagian tengah kuku.",
+        harga: "Rp 68.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_d420aa6b.jpg"
+      },
+      {
+        nama: "Champagne Sparkle",
+        kategori: "Luxury Series",
+        deskripsi: "Kilau glitter champagne yang cocok untuk acara pesta malam.",
+        harga: "Rp 76.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_e8a153c4.jpg"
+      },
+      {
+        nama: "Milky White Pure",
+        kategori: "Minimalis",
+        deskripsi: "Putih susu transparan yang bersih, rapi, dan modern.",
+        harga: "Rp 55.000",
+        bentuk: "Short Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_f392a3a3.jpg"
+      },
+      {
+        nama: "Ruby Velvet Shine",
+        kategori: "Bold Series",
+        deskripsi: "Merah rubi elegan dengan efek kilau mewah seperti kuteks gel.",
+        harga: "Rp 70.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_f96d4393.jpg"
+      },
+      {
+        nama: "Dusty Mauve Classic",
+        kategori: "Glam Series",
+        deskripsi: "Perpaduan warna mauve lembut yang cocok untuk semua warna kulit.",
+        harga: "Rp 62.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_arranged_on_fabric_fa334f2e.jpg"
+      },
+      {
+        nama: "Satin Pink Display",
+        kategori: "Glam Series",
+        deskripsi: "Koleksi pink satin elegan dengan tampilan halus dan rapi.",
+        harga: "Rp 64.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_catalog_photo_arrang._e7fdd28a.jpg"
+      },
+      {
+        nama: "Pearl Ivory Catalog",
+        kategori: "Minimalis",
+        deskripsi: "Warna gading mutiara yang cocok untuk acara formal dan wisuda.",
+        harga: "Rp 66.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_catalog_photo_display_78fd32d6.jpg"
+      },
+      {
+        nama: "Pure White Linen",
+        kategori: "Minimalis",
+        deskripsi: "Nuansa putih bersih minimalis dengan kilau lembut.",
+        harga: "Rp 56.000",
+        bentuk: "Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_on_white_fabric_245d3cef.jpg"
+      },
+      {
+        nama: "Natural Sheen Set",
+        kategori: "Minimalis",
+        deskripsi: "Tampilan kuku sehat alami dengan efek kilap bening.",
+        harga: "Rp 55.000",
+        bentuk: "Short Square",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_set_on_display_6f18564a.jpg"
+      },
+      {
+        nama: "Soft Blush Display",
+        kategori: "Glam Series",
+        deskripsi: "Rona pink merona yang manis dan feminin untuk harian.",
+        harga: "Rp 63.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_set_on_display_b8c196db.jpg"
+      },
+      {
+        nama: "Silk Taupe Collection",
+        kategori: "Earth Tone",
+        deskripsi: "Warna taupe netral yang tenang dan berkelas.",
+        harga: "Rp 60.000",
+        bentuk: "Oval",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_set_on_fabric_7dc1578e.jpg"
+      },
+      {
+        nama: "Classic French Design",
+        kategori: "Minimalis",
+        deskripsi: "Desain ujung putih klasik yang bersih dan elegan untuk segala acara.",
+        harga: "Rp 55.000",
+        bentuk: "Square",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_with_French_design_338985b0.jpg"
+      },
+      {
+        nama: "Romantic Rose Garden",
+        kategori: "Artistic Series",
+        deskripsi: "Hiasan bunga mawar lembut yang romantis dan anggun.",
+        harga: "Rp 73.000",
+        bentuk: "Almond",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/False_nails_with_rose_design_2f279d41.jpg"
+      },
+      {
+        nama: "Futuristic Neon Glow",
+        kategori: "Futuristic",
+        deskripsi: "Warna neon menyala bergaya futuristik yang mencuri perhatian.",
+        harga: "Rp 80.000",
+        bentuk: "Coffin",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Futuristic_neon_fake_nails_set_c7ecec72.jpg"
+      },
+      {
+        nama: "Gold Marble Luxury",
+        kategori: "Luxury Series",
+        deskripsi: "Set kuku bermotif marmer mewah dengan aksen guratan emas.",
+        harga: "Rp 79.000",
+        bentuk: "Almond",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/Gold_marble_false_nails_set_c94f5cff.jpg"
+      },
+      {
+        nama: "Gothic Horror Noir",
+        kategori: "Themed Series",
+        deskripsi: "Set kuku bernuansa gothic gelap yang dramatis dan artistik.",
+        harga: "Rp 78.000",
+        bentuk: "Stiletto",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Gothic_horror_fake_nails_set_613c80d1.jpg"
+      },
+      {
+        nama: "Kuromi Cute Rebel",
+        kategori: "Character Series",
+        deskripsi: "Set kuku bertema Kuromi dengan perpaduan warna hitam dan ungu imut.",
+        harga: "Rp 85.000",
+        bentuk: "Almond",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/Kuromi_themed_fake_nails_set_919060cd.jpg"
+      },
+      {
+        nama: "Pastel Romantic Anime",
+        kategori: "Character Series",
+        deskripsi: "Nuansa anime romantis berwarna pastel yang manis dan dreamy.",
+        harga: "Rp 82.000",
+        bentuk: "Oval",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Pastel_romantic_anime_fake_nails_ef19e44d.jpg"
+      },
+      {
+        nama: "Post-Apocalyptic Edge",
+        kategori: "Themed Series",
+        deskripsi: "Desain tekstur metalik industrial yang unik dan berani.",
+        harga: "Rp 79.000",
+        bentuk: "Stiletto",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Post-apocalyptic_fake_nail_set_17bde851.jpg"
+      },
+      {
+        nama: "Red Rose Velvet",
+        kategori: "Bold Series",
+        deskripsi: "Motif mawar merah menyala yang romantis dan memikat.",
+        harga: "Rp 74.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Red_rose_fake_nails_set_2fb9480b.jpg"
+      },
+      {
+        nama: "Retro Synthwave 80s",
+        kategori: "Futuristic",
+        deskripsi: "Gradasi warna retro synthwave neon khas era 80-an.",
+        harga: "Rp 77.000",
+        bentuk: "Coffin",
+        badge: "",
+        badgeTipe: "",
+        gambar: "kuku/Retro_synthwave_fake_nails_set_8fcb269b.jpg"
+      },
+      {
+        nama: "Ruby Red Glamour",
+        kategori: "Bold Series",
+        deskripsi: "Merah rubi pekat berkilau untuk tampilan mewah dan percaya diri.",
+        harga: "Rp 68.000",
+        bentuk: "Almond",
+        badge: "Terlaris",
+        badgeTipe: "",
+        gambar: "kuku/Ruby_red_fake_nails_set_6618d3d3.jpg"
+      },
+      {
+        nama: "Little Twin Stars Dream",
+        kategori: "Character Series",
+        deskripsi: "Tema Little Twin Stars bernuansa biru dan pink pastel yang menggemaskan.",
+        harga: "Rp 85.000",
+        bentuk: "Short Square",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Sanrio_Little_Twin_Stars_fake_9047ae92.jpg"
+      },
+      {
+        nama: "Swan Lake Ballet",
+        kategori: "Luxury Series",
+        deskripsi: "Terinspirasi keanggunan balet Swan Lake dengan detail mutiara dan pita.",
+        harga: "Rp 84.000",
+        bentuk: "Almond",
+        badge: "Baru",
+        badgeTipe: "gold",
+        gambar: "kuku/Swan_Lake_fake_nails_set_199d1821.jpg"
+      }
+    ];
+
+    // Merender daftar produk ke dalam grid katalog
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("catalog-grid");
+      const totalLabel = document.getElementById("total-produk");
+
+      totalLabel.textContent = `${produkKuku.length} Produk`;
+
+      const htmlProduk = produkKuku.map((item) => {
+        const badgeHtml = item.badge
+          ? `<span class="badge ${item.badgeTipe}">${item.badge}</span>`
+          : "";
+
+        return `
+          <article class="product-card">
+            <div class="product-image">
+              ${badgeHtml}
+              <img src="${item.gambar}" alt="${item.nama}" loading="lazy" />
+            </div>
+            <div class="product-info">
+              <div class="product-category">${item.kategori}</div>
+              <h2 class="product-title">${item.nama}</h2>
+              <p class="product-desc">${item.deskripsi}</p>
+              <div class="product-meta">
+                <span class="product-price">${item.harga}</span>
+                <span class="product-shape">${item.bentuk}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      grid.innerHTML = htmlProduk;
+    });
+  </script>
+</body>
+</html>
